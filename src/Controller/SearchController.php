@@ -16,8 +16,8 @@ class SearchController extends AbstractController
      */
     public function index(GeoApi $GeoApi, EtablissementPublicApi $etablissementPublicApi)
     {
-        $returnCity = [];
-        $returnEtablissement = [];
+        $renderCity = [];
+        $renderEtablissement = [];
 
         if (isset($_GET['send'])) {
             $ville = $_GET['ville'];
@@ -34,23 +34,23 @@ class SearchController extends AbstractController
                     die('error');
                 }
 
-                array_push($returnCity, $citys);
-                array_push($returnEtablissement, $etablissements);
+                array_push($renderCity, $citys);
+                array_push($renderEtablissement, $etablissements);
             } else {
                 echo '<a href="/">Retour</a> <br/>';
                 die('Cette ville n\'existe pas');
             }
 
-            if (empty($returnEtablissement[0]['features'])) {
+            if (empty($renderEtablissement[0]['features'])) {
                 return $this->render('search/index.html.twig', [
                     'controller_name' => 'SearchController',
-                    'citys' => $returnCity[0][0],
+                    'citys' => $renderCity[0][0],
                 ]);
             } else {
                 return $this->render('search/index.html.twig', [
                     'controller_name' => 'SearchController',
-                    'citys' => $returnCity[0][0],
-                    'etablissements' => $returnEtablissement
+                    'citys' => $renderCity[0][0],
+                    'etablissements' => $renderEtablissement
                 ]);
             }
         } else {
