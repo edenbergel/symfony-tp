@@ -38,7 +38,7 @@ class SearchController extends AbstractController
                 array_push($returnEtablissement, $etablissements);
             } else {
                 echo '<a href="/">Retour</a> <br/>';
-                die('Erreur, la ville n\'existe pas');
+                die('Cette ville n\'existe pas');
             }
 
             if (empty($returnEtablissement[0]['features'])) {
